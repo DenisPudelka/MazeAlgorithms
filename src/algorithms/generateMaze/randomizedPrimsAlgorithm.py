@@ -4,9 +4,8 @@ import random
 
 class RandomizedPrimesAlgorithm:
     def __init__(self, maze):
-        self.unvisited = 'U'
+        self.unvisited = '0'
         self.cell = '1'
-        self.wall = '0'
         self.maze = maze
         self.maze.maze_matrix[:] = self.unvisited
         self.start_height = random.randint(1, maze.height - 2)  # making sure we dont start/end on edge
@@ -24,7 +23,7 @@ class RandomizedPrimesAlgorithm:
             if y <= self.maze.height - 2:
                 if self.maze.maze_matrix[y + 1][x] == self.unvisited and \
                         self.maze.maze_matrix[y - 1][x] == self.cell:  # up U
-                    surrounding_cells = self.surroundingCells(rand_wall)
+                    surrounding_cells = self.surrounding_cells(rand_wall)
                     if surrounding_cells < 2:
                         self.maze.maze_matrix[y][x] = self.cell
                         self.update_walls(wall_list, y, x)
@@ -35,7 +34,7 @@ class RandomizedPrimesAlgorithm:
             if y > 0:
                 if self.maze.maze_matrix[y - 1][x] == self.unvisited and \
                         self.maze.maze_matrix[y + 1][x] == self.cell:  # down u
-                    surrounding_cells = self.surroundingCells(rand_wall)
+                    surrounding_cells = self.surrounding_cells(rand_wall)
                     if surrounding_cells < 2:
                         self.maze.maze_matrix[y][x] = self.cell
                         self.update_walls(wall_list, y, x)
@@ -46,18 +45,17 @@ class RandomizedPrimesAlgorithm:
             if x > 0:
                 if self.maze.maze_matrix[y][x - 1] == self.unvisited and \
                         self.maze.maze_matrix[y][x + 1] == self.cell:  # left U
-                    surrounding_cells = self.surroundingCells(rand_wall)
+                    surrounding_cells = self.surrounding_cells(rand_wall)
                     if surrounding_cells < 2:
                         self.maze.maze_matrix[y][x] = self.cell
                         self.update_walls(wall_list, y, x)
                         self.delete_wall(wall_list, rand_wall)
                         continue
 
-
             if x <= self.maze.width - 2:
                 if self.maze.maze_matrix[y][x + 1] == self.unvisited and \
                         self.maze.maze_matrix[y][x - 1] == self.cell:  # right U
-                    surrounding_cells = self.surroundingCells(rand_wall)
+                    surrounding_cells = self.surrounding_cells(rand_wall)
                     if surrounding_cells < 2:
                         self.maze.maze_matrix[y][x] = self.cell
                         self.update_walls(wall_list, y, x)
@@ -75,14 +73,9 @@ class RandomizedPrimesAlgorithm:
         walls.append([y, x + 1])  # left
         walls.append([y, x - 1])  # right
 
-        for wall in walls:
-            w_y, w_x = wall
-            self.maze.maze_matrix[w_y][w_x] = self.wall
-
         return walls
 
-
-    def surroundingCells(self, wall):
+    def surrounding_cells(self, wall):
         s_cells = 0
         y, x = wall
 
