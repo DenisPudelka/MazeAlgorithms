@@ -1,3 +1,4 @@
+from src.algorithms.generateMaze.randomized_prims_algorithm import *
 import numpy as np
 
 class Maze:
@@ -18,7 +19,8 @@ class Maze:
         print(self.maze_matrix)
 
     def generate_maze(self):
-        pass
+        generator = RandomizedPrimesAlgorithm(self)
+        generator.generate_maze()
 
     def modify_maze(self, position, value):
         self.maze_matrix[position] = value
