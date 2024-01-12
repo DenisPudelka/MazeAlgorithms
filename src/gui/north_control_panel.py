@@ -29,6 +29,11 @@ class NorthControlPanel(tk.Frame):
         self.button = ttk.Button(self, text="Generate Maze", command=self.generate_maze)
         self.button.grid(row=2, column=0, columnspan=2, pady=5)
 
+    def get_dimensions(self):
+        return int(self.width_entry.get()), int(self.height_entry.get())
+
+    def on_button_click(self, callback):
+        self.button.config(command=callback)
 
     def generate_maze(self):
         width = self.width_entry.get()
