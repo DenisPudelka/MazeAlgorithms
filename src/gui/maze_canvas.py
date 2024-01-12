@@ -1,7 +1,7 @@
 import tkinter as tk
 
 class MazeCanvas(tk.Canvas):
-    def __init__(self, parent, maze=None, width=600, height=400, **kwargs):
+    def __init__(self, parent, maze=None, width=400, height=400, **kwargs):
         super().__init__(parent, width=width, height=height, **kwargs)
         self.maze = maze
         self.cell_width = None
@@ -11,7 +11,7 @@ class MazeCanvas(tk.Canvas):
         self.bind("<Configure>", self.on_resize)
 
     def draw_maze(self):
-        if not self.maze:
+        if self.maze is None:
             return
 
         self.delete('all')
@@ -23,19 +23,19 @@ class MazeCanvas(tk.Canvas):
             for x in range(cols):
                 x1 = x * self.cell_width
                 y1 = y * self.cell_height
-                x2 = x1 * self.cell_width
-                y2 = y1 * self.cell_height
+                x2 = x1 + self.cell_width
+                y2 = y1 + self.cell_height
                 if self.maze[y][x] == '1':
-                    self.create_rectangle(x1, y1, x2, y2, fill="wight")
+                    self.create_rectangle(x1, y1, x2, y2, fill="white")
                 else:
                     self.create_rectangle(x1, y1, x2, y2, fill="black")
 
-    def update_maze(self, new_maze):
-        self.maze = new_maze
+    def update_maze(self, maze_matrix):
+        self.maze = maze_matrix
         self.draw_maze()
 
     def on_resize(self, event):
-        if not self.maze:
+        if self.maze is None:
             return
         self.cell_width = event.width / len(self.maze[0])
         self.cell_height = event.height / len(self.maze)
