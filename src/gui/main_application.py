@@ -2,6 +2,8 @@ import tkinter as tk
 from .maze_canvas import MazeCanvas
 from .north_control_panel import NorthControlPanel
 from .south_controler_panel import SouthControlPanel
+from src.maze.maze import Maze
+
 
 class MainApplication(tk.Tk):
     def __init__(self):
@@ -18,3 +20,11 @@ class MainApplication(tk.Tk):
         self.south_panel = SouthControlPanel(self)
         self.south_panel.pack(side="bottom", fill="x")
 
+        self.north_panel.on_button_click(self.generate_and_display_maze)
+
+    def generate_and_display_maze(self):
+        width, height = self.north_panel.get_dimensions()
+        self.maze = Maze(width, height)
+        self.maze.generate_maze()
+        print(self.maze.maze_matrix)
+        self.maze_canvas.update_maze(self.maze.maze_matrix)
