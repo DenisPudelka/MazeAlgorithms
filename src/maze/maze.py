@@ -3,9 +3,10 @@ import numpy as np
 
 class Maze:
     # 0 - wall, 1 - walkable, S - start, E - end
-    def __init__(self, width, height, start=None, end=None):
+    def __init__(self, width, height, generation_strategy, start=None, end=None):
         self.width = width
         self.height = height
+        self.generation_strategy = generation_strategy
         self.maze_matrix = np.zeros((width, height), dtype='U1')
         self.maze_matrix[:] = '0'
 
@@ -21,6 +22,7 @@ class Maze:
     def generate_maze(self):
         generator = RandomizedPrimesAlgorithm(self)
         generator.generate_maze()
+        #self.generation_strategy.generate_maze(self)
 
     def modify_maze(self, position, value):
         self.maze_matrix[position] = value
