@@ -1,4 +1,4 @@
-from src.algorithms.generateMaze.randomized_prims_algorithm import *
+from src.algorithms.generate_maze.randomized_prims_algorithm import *
 import numpy as np
 
 class Maze:
