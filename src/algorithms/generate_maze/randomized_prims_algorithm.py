@@ -1,11 +1,14 @@
 import numpy as np
 import random
+from src.algorithms.generate_maze.strategy.maze_generation_strategy import MazeGenerationStrategy
 
-
-class RandomizedPrimesAlgorithm:
-    def __init__(self, maze):
+class RandomizedPrimesAlgorithm(MazeGenerationStrategy):
+    def __init__(self):
         self.unvisited = '0'
         self.cell = '1'
+
+
+    def generate_maze(self, maze):
         self.maze = maze
         self.maze.maze_matrix[:] = self.unvisited
         self.start_height = random.randint(1, maze.height - 2)  # making sure we dont start/end on edge
@@ -13,7 +16,6 @@ class RandomizedPrimesAlgorithm:
         self.start_cell = (self.start_height, self.start_width)  # making sure we dont start/end on edge
         self.maze.maze_matrix[self.start_cell] = self.cell  # starting cell
 
-    def generate_maze(self):
         wall_list = self.get_init_walls()
         while wall_list:
             rand_wall = random.choice(wall_list)
