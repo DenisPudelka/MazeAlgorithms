@@ -1,4 +1,5 @@
 from src.algorithms.generate_maze.randomized_prims_algorithm import *
+from src.algorithms.generate_maze.randomizes_depth_first_search_algorithm import *
 import numpy as np
 
 class Maze:
@@ -20,9 +21,7 @@ class Maze:
         print(self.maze_matrix)
 
     def generate_maze(self):
-        generator = RandomizedPrimesAlgorithm(self)
-        generator.generate_maze()
-        #self.generation_strategy.generate_maze(self)
+        self.generation_strategy.generate_maze(self)
 
     def modify_maze(self, position, value):
         self.maze_matrix[position] = value

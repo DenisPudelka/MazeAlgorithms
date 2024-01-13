@@ -3,6 +3,8 @@ from .maze_canvas import MazeCanvas
 from .north_control_panel import NorthControlPanel
 from .south_controler_panel import SouthControlPanel
 from src.maze.maze import Maze
+from src.algorithms.generate_maze.randomizes_depth_first_search_algorithm import *
+from src.algorithms.generate_maze.randomized_prims_algorithm import *
 
 
 class MainApplication(tk.Tk):
@@ -24,7 +26,7 @@ class MainApplication(tk.Tk):
 
     def generate_and_display_maze(self):
         width, height = self.north_panel.get_dimensions()
-        self.maze = Maze(width, height)
+        self.maze = Maze(width, height, RandomizedPrimesAlgorithm())
         self.maze.generate_maze()
         print(self.maze.maze_matrix)
         self.maze_canvas.update_maze(self.maze.maze_matrix)
