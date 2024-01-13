@@ -2,7 +2,7 @@ import tkinter as tk
 
 class MazeCanvas(tk.Canvas):
     def __init__(self, parent, maze=None, width=400, height=400, **kwargs):
-        super().__init__(parent, width=width, height=height, **kwargs)
+        super().__init__(parent, width=width, height=height, **kwargs, background="blue")
         self.maze = maze
         self.cell_width = None
         self.cell_height = None
