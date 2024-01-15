@@ -17,7 +17,7 @@ class MazeGeneratorPanel(tk.Frame):
 
         self.algorithm_combobox = ttk.Combobox(self)
         self.algorithm_combobox.grid(row=3, column=0, columnspan=2, pady=5)
-        self.algorithm_combobox['values'] = ('Randomized Prims', 'Depth First Search')
+        self.algorithm_combobox['values'] = ('Randomized Prims', 'Depth First Search', 'Kruskals Algorithm')
         self.algorithm_combobox['state'] = 'readonly'
         self.algorithm_combobox.current(0)
 

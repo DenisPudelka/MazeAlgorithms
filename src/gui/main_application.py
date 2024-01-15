@@ -3,6 +3,7 @@ from .maze_canvas import MazeCanvas
 from .new_south_panel import *
 from src.algorithms.generate_maze.randomized_prims_algorithm import *
 from src.algorithms.generate_maze.randomizes_depth_first_search_algorithm import *
+from src.algorithms.generate_maze.randomized_kruskals_algorithm import *
 from src.maze.maze import *
 
 
@@ -23,7 +24,8 @@ class MainApplication(tk.Tk):
     def generate_maze(self, width, height, algorithm):
         strategies = {
             'Randomized Prims': RandomizedPrimesAlgorithm,
-            'Depth First Search': DepthFirstSearch
+            'Depth First Search': DepthFirstSearch,
+            'Kruskals Algorithm': RandomizedKruskalAlgorith
         }
         generation_strategy = strategies[algorithm]()
         self.maze = Maze(width, height, generation_strategy)
