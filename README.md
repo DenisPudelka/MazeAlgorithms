@@ -8,7 +8,7 @@ Includes a visual interface and supports both generation and pathfinding techniq
 
 ## Demo 🎥
 
-![Maze Generation & Solving Demo](assets/demo.mp4)
+![Maze Generation & Solving Demo](assets/demo2.gif)
 
 ### Maze Generation Algorithms:
 - Randomized Prim's
